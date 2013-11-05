@@ -1,0 +1,12 @@
+<h1>Editing admin_product</h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Products', admin_product_path %></li>
+  <li><%= link_to @product.name, admin_product_path(@product) %></li>
+  <li class="active">Edit</li>
+</ol>
+
+
+<%= render 'form' %>
+
+

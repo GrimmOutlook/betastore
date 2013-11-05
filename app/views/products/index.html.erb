@@ -1,0 +1,17 @@
+<h3><strong>Betastore</strong></h3>
+
+
+<%= link_to  "#" do %>
+  "Current Items in Your Cart: (<span id="cart_item_count"><%= cart_item_count %></span>)",
+ <% end %>
+
+<ul>
+
+<% for product in @products %>
+<li><img src = "http://pjb3.github.io/betastore/products/<%= product.name.downcase.tr(" ", "_") %>.jpg"><a href="HatOrderPage.html"><%= product.name %></a></li>
+
+<%= button_to "Add to Cart", add_to_cart_path(product), class: 'btn btn-primary add_to_cart'  %>
+
+<% end %>
+
+</ul>

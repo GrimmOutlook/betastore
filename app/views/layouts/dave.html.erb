@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Betastore</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+ <!-- Figure out what the purpose of the three erb tags are -->
+</head>
+
+<body>
+	 <div style="margin: 0 auto; text-align: center">
+	 <h2>Here is some text in the <em>dave</em> layout.</h2>
+	 <hr></hr>
+	 <h5>Some h5 text, some of it <strong>bold</strong>.</h5>
+    <%= image_tag "BetamoreLogo.png", width: 600 %>
+    <%= yield %>
+  </div>
+</body>
+</html>
