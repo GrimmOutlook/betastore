@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029231234) do
+ActiveRecord::Schema.define(version: 20131112213902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "credit_cards", force: true do |t|
+    t.string   "cardholder_name"
+    t.string   "card_number"
+    t.integer  "exp_month",       limit: 2
+    t.integer  "exp_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "customers", force: true do |t|
     t.string   "name"
@@ -42,6 +51,7 @@ ActiveRecord::Schema.define(version: 20131029231234) do
     t.decimal  "total_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "credit_card_id"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
