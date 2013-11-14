@@ -10,10 +10,10 @@ Betastore::Application.routes.draw do
   
   resources :dave
   
-  resources :orders do
-    resource :refund
+  
 
-end
+  get '/checkout' => 'orders#new', as: 'checkout'
+  post '/checkout' => 'orders#create'
 
   get '/cart' => 'cart_items#index', as: 'cart_items'
 
