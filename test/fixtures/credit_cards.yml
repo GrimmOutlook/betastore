@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  cardholder_name: MyString
-  card_number: MyString
-  exp_month: 1
-  exp_year: 1
+cc1:
+  cardholder_name: firstname_lastname
+  card_number: 12345681234568
+  exp_month: 04
+  exp_year: 2016
 
-two:
-  cardholder_name: MyString
-  card_number: MyString
-  exp_month: 1
-  exp_year: 1
+cc2:
+  cardholder_name: onename
+  card_number: 123456781234567
+  exp_month: 2015
+  exp_year: 12
