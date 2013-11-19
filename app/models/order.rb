@@ -21,11 +21,9 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
-    line_items.inject(0) |sum, li|
-      li.total_price sum
+    line_items.inject(0) do |sum, li|
+      li.total_price + sum
     end
   end
-
-
 end
 
