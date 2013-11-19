@@ -11,6 +11,9 @@ Betastore::Application.routes.draw do
   resources :dave
   
   
+  #Do we need routes to enter credit card info?  Or include in 'checkout' page?
+  #match '/checkout' => 'orders#new', as: 'credit_card_info'
+  #post '/checkout' => 'orders#create'
 
   get '/checkout' => 'orders#new', as: 'checkout'
   post '/checkout' => 'orders#create'
