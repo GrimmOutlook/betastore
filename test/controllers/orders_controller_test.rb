@@ -13,7 +13,15 @@ class OrdersControllerTest < ActionController::TestCase
     post :create
     assert_redirected_to  root_path
     assert_equal "Your order has been placed", flash[:notice]
-
   end
+
+  test "credit card info correct" do
+    get :new
+    assert_redirected_to  root_path
+    assert_equal "Your order has been placed", flash[:notice]
+  end
+
+
+
 end
 
