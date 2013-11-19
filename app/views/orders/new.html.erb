@@ -8,16 +8,25 @@
     <th>Quantity</th>
     <th>Unit Price</th>
     <th>Total Price</th>
+    <th>Cardholder Name</th>
+    <th>Card Number</th>
+    <th>Card Expiration Date - Month</th>
+    <th>Card Expiration Date - Year</th>
   </tr>
 
-  <%= f.fields_for :line_items do |line_item_fields| %>
+  <%= f.fields_for :line_items, :credit_card do |line_item_fields, credit_card_fields| %>
     <% line_item = line_item_fields.object %>
     <%= line_item_fields.hidden_field :product_id %>
-   <tr>
+    <% credit_card = credit_card_fields.object %>
+  <tr>
      <td><%= line_item.product.name %></td>
      <td><%= line_item_fields.text_field :quantity %></td>
      <td><%= number_to_currency line_item.product.price %></td>
-     <td><%= number_to_currency line_item.total_price) %></td>
+     <td><%= number_to_currency line_item.total_price %></td>
+     <td><%= credit_card.text_field :chname %></td>
+     <td><%= credit_card.text_field :cnum %></td>
+     <td><%= credit_card.text_field :expm %></td>
+     <td><%= credit_card.text_field :expy %></td>
    </tr>
 
    <tr>
@@ -26,5 +35,5 @@
    <td><%= number_to_currency @order.total_price %></td>
    </tr>
 </table>
-<%= submit_tag "Submit Order", class: 'btn btn-success' %>
+<%= submit_tag "Verify Credit Card Information & Submit Order", class: 'btn btn-success' %>
 <% end %>
