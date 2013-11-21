@@ -6,7 +6,24 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-   @products = Product.all
+   @categories = Category.all
+
+   scope = Product
+
+    if params[:min_price].present?
+      scope = scope.where('price >= ?', params[:min_price])
+    end
+
+    if params[:category_id].present?
+      scope = scope.includes(:product_categorizations)
+                .where('product_categorizations.category_id' => params[:category_id])
+    end
+
+    if params[:stock].present?
+      scope = scope.where('inventory >= 0', params[:stock])
+    end
+
+   @products = scope.page(params[:page]).per(10)
    session[:view_count] ||=0
    session[:view_count] += 1
 

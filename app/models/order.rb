@@ -1,7 +1,9 @@
 class Order < ActiveRecord::Base
-  belongs_to :customer, :credit_card
+  belongs_to :customer
+  belongs_to :credit_card
   has_many :line_items
-  accepts_nested_attributes_for :line_items, :credit_card
+  accepts_nested_attributes_for :line_items
+  accepts_nested_attributes_for :credit_card
 
 #These lines didn't work for some reason:
 # def sum

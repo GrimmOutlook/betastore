@@ -15,6 +15,8 @@ Betastore::Application.routes.draw do
   #match '/checkout' => 'orders#new', as: 'credit_card_info'
   #post '/checkout' => 'orders#create'
 
+  get '/categories/:category_id/products' => 'products#index', as: 'category_products'
+
   get '/checkout' => 'orders#new', as: 'checkout'
   post '/checkout' => 'orders#create'
 
