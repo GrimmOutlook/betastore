@@ -27,6 +27,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'kaminari'
 
 #to use the API
 gem 'httparty'
@@ -36,6 +37,7 @@ group :doc do
   gem 'sdoc', require: false
 
 group :development do
+  gem 'faker'	
   gem 'hirb'
 end
   
@@ -43,6 +45,8 @@ end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+gem 'rails_12factor', group: :production
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -52,3 +56,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+ruby "2.0.0"
