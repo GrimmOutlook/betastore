@@ -1,5 +1,10 @@
 Betastore::Application.routes.draw do
+  
   namespace :admin do
+    get 'orders' => 'orders#index'
+    get 'orders/edit' => 'orders#edit'
+    get 'orders/:id' => 'orders#show'
+    patch 'orders/:id' => 'order#update'
     resources :products
     root :to => 'products#index'
   end

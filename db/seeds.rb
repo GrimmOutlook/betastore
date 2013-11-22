@@ -31,10 +31,10 @@ stuff = Category.create!(name: 'Stuff')
   stuff.products << Product.create!( name: 'Sticker', price: 2.99, inventory: 0)
 
 # The rest is fake data to simulate having a large product catalog
- 1000.times do
-   categories.sample.products << Product.create!(
-     name: Faker::Lorem.words(2).join(' ').titleize,
-     price: (rand(20) + rand(99)/100.0))
- end
+# 1000.times do
+ #  categories.sample.products << Product.create!(
+  #   name: Faker::Lorem.words(2).join(' ').titleize,
+   #  price: (rand(20) + rand(99)/100.0))
+# end
 
 

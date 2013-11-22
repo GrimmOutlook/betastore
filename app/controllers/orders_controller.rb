@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
-    if @order.save && @credit_card.save
+    if @order.save #&& @credit_card.save
       redirect_to root_path, notice: 'Your order has been placed'
     else
       flash.now[:alert] = @order.errors.full_messages.join(', ')

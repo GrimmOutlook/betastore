@@ -14,6 +14,10 @@ class Order < ActiveRecord::Base
 #    sum
 #  end
 
+
+#Use this?
+before_save :set_total_amount
+
   def self.recent
     where("placed_at > ?", 7.days.ago)
   end
@@ -27,5 +31,18 @@ class Order < ActiveRecord::Base
       li.total_price + sum
     end
   end
+
+
+#Use this??
+  def set_total_amount
+    self.total_amount = total_price
+  end
+
+
+
+
 end
+
+
+
 
