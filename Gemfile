@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -34,18 +34,27 @@ gem 'httparty'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
-
-group :development do
-  gem 'hirb'
-end
-  
 end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'kaminari'
 
 gem 'rails_12factor', group: :production
+gem 'newrelic_rpm'
+
+gem 'progressbar'
+
+group :development do
+  gem 'faker'
+  gem 'hirb'
+  gem 'quiet_assets'
+end
+
+group :development, :test do
+  gem 'pry'
+end
 # Use unicorn as the app server
 # gem 'unicorn'
 
