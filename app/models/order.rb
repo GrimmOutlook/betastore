@@ -1,7 +1,9 @@
 class Order < ActiveRecord::Base
-  belongs_to :customer, :credit_card
+  belongs_to :customer
+  belongs_to :credit_card
   has_many :line_items
-  accepts_nested_attributes_for :line_items, :credit_card
+  accepts_nested_attributes_for :line_items
+  accepts_nested_attributes_for :credit_card
 
 #These lines didn't work for some reason:
 # def sum
@@ -11,6 +13,10 @@ class Order < ActiveRecord::Base
 #    end
 #    sum
 #  end
+
+
+#Use this?
+before_save :set_total_amount
 
   def self.recent
     where("placed_at > ?", 7.days.ago)
@@ -25,5 +31,18 @@ class Order < ActiveRecord::Base
       li.total_price + sum
     end
   end
+
+
+#Use this??
+  def set_total_amount
+    self.total_amount = total_price
+  end
+
+
+
+
 end
+
+
+
 

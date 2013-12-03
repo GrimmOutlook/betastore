@@ -1,5 +1,10 @@
 Betastore::Application.routes.draw do
+  
   namespace :admin do
+    get 'orders' => 'orders#index'
+    get 'orders/edit' => 'orders#edit'
+    get 'orders/:id' => 'orders#show'
+    patch 'orders/:id' => 'order#update'
     resources :products
     root :to => 'products#index'
   end
@@ -14,6 +19,8 @@ Betastore::Application.routes.draw do
   #Do we need routes to enter credit card info?  Or include in 'checkout' page?
   #match '/checkout' => 'orders#new', as: 'credit_card_info'
   #post '/checkout' => 'orders#create'
+
+  get '/categories/:category_id/products' => 'products#index', as: 'category_products'
 
   get '/checkout' => 'orders#new', as: 'checkout'
   post '/checkout' => 'orders#create'
