@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -32,15 +33,21 @@ gem 'kaminari'
 #to use the API
 gem 'httparty'
 
+gem 'progressbar'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
 
 group :development do
   gem 'faker'	
   gem 'hirb'
+  gem 'quiet_assets'
 end
   
+group :development, :test do
+  gem 'pry'
 end
 
 # Use ActiveModel has_secure_password
@@ -59,6 +66,3 @@ gem 'newrelic_rpm'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-
-ruby "2.0.0"
