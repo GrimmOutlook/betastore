@@ -46,4 +46,8 @@ class SubscriptionsControllerTest < ActionController::TestCase
 
     assert_redirected_to subscriptions_path
   end
+
+  test "an order placed 10 days ago is not returned by recent" do
+    assert !Order.recent.where(id: orders(:older).id).exists?
+    end
 end
