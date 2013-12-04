@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_filter :require_log_in, only: [:new, :create]
+  #skip_before_filter :require_log_in, only: [:new, :create]
 
   def new
     @order = Order.new
@@ -13,7 +13,22 @@ class OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
-    if @order.save #&& @credit_card.save
+    @order.credit_card.customer = current_customer
+
+    if @order.save
+
+    # Create a Customer
+        customer = Stripe::Customer.create(
+          :card => params[:stripe_customer_token],
+          :description => current_customer.email)
+
+        current_customer.update_attributes!(stripe_token: customer.id)
+
+        Stripe::Charge.create(
+          :amount => @order.total_amount_in_cents,
+          :currency => "usd",
+          :customer => current_customer.stripe_token)
+
       redirect_to root_path, notice: 'Your order has been placed'
     else
       flash.now[:alert] = @order.errors.full_messages.join(', ')
@@ -25,6 +40,6 @@ class OrdersController < ApplicationController
   protected
   def order_params
     params.require(:order).permit(line_items_attributes: [:product_id, :quantity],
-    credit_card_attributes: [:cardholder_name, :card_number, :exp_month, :exp_year])
+    credit_card_attributes: [:stripe_token, :card_type, :last_4, :exp_month, :exp_year])
   end
 end
