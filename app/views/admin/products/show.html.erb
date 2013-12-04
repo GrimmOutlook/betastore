@@ -1,0 +1,24 @@
+<div class="alert alert-success"><%= notice %>
+
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Product', admin_product_path %></li>
+  <li class="active">Product Details</li>
+</ol>
+
+<h1><%= @product.name %></h1>
+
+<%= image_tag @product.image_url %>
+
+<p><strong>Price:</strong> <%=
+
+
+
+<%= link_to 'Edit', admin_product_path(@product), class:  %>
+<%= link_to 'Back', admin_product_path %>
+
+<%= link_to 'Destroy', admin_product_path(@product), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+<%= link_to 'Edit', edit_admin_product_path(@admin_product) %> |
+<%= link_to 'Back', admin_products_path %>

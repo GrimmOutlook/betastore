@@ -1,0 +1,22 @@
+class LineItem < ActiveRecord::Base
+  belongs_to :order
+  belongs_to :product
+
+#Copied from Paul's github Oct. 24 - figure this out!
+  
+  validates :quantity, numericality: { greater_than_or_equal_to: 0 }
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
+  
+  before_validation :set_price
+  
+  def set_price
+    self.price = product.price
+  end
+  
+  def total_price
+    quantity * product.price
+  end
+
+
+
+end

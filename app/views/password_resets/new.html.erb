@@ -1,0 +1,18 @@
+<h1>Reset Password</h1>
+
+<% if params[:email].present? %>
+  <div class="error">No account matching that e-mail address</div>
+<% end %>
+
+
+<p>Can't remember your password? No worries, enter your e-mail address below, and we'll send you instructions to reset it.</p>
+
+<%= form_tag do %>
+  <label>
+    <%= label_tag :email, 'Email Address:' %>
+    <%= email_field_tag :email %>
+  </label>
+
+  <%= submit_tag "Send Password Reset Instructions" %>
+
+<% end %>

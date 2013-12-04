@@ -1,0 +1,43 @@
+<h3><strong>Betastore</strong></h3>
+
+
+<%= link_to  cart_items_path, class: 'cart' do %>
+  "Current Items in Your Cart: (<span id="cart_item_count"><%= cart_item_count %></span>)",
+ <% end %>
+
+
+<ul>
+
+<div id="cart" style="display: none"></div>
+
+<h3>Categories</h3>
+<ul>
+<% @categories.each do |category| %>
+  <li><%= link_to category.name, category_products_path(category) %></li>
+<% end %>
+</ul>
+
+<h3>Price</h3>
+<ul>
+  <% [4.99, 9.99, 14.99].each do |price| %>
+    <li><%= link_to "#{price} and up", min_price: price %></li>
+  <% end %>
+</ul>
+
+<h3>Inventory</h3>
+<ul>
+  <% @products.each do |product| %>
+    <li><%= link_to "#{product.inventory} are left", stock: product.inventory %></li>
+  <% end %>
+</ul>
+
+<% for product in @products %>
+<li><img src = "http://pjb3.github.io/betastore/products/<%= product.name.downcase.tr(" ", "_") %>.jpg"><a href="HatOrderPage.html"><%= product.name %></a></li>
+
+<%= button_to "Add to Cart", add_to_cart_path(product), class: 'btn btn-primary add_to_cart'  %>
+
+<% end %>
+
+</ul>
+
+<%= paginate @products %>

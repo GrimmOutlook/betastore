@@ -1,0 +1,8 @@
+test:
+  name: Example
+  price: 9.99
+
+other:
+  name: other
+  price: 7.99
+  
