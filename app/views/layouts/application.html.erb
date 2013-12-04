@@ -3,11 +3,12 @@
 <head>
   <title>Betastore</title>
   <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application" %>  
   <%= csrf_meta_tags %>
+  <%= yield :head %>
 </head>
 <body>
-  <div style="margin: 0 auto; text-align: center">
+    <div style="margin: 0 auto; text-align: center">
     <%= image_tag "BetamoreLogo.png", width: 600 %>
 
 
@@ -17,7 +18,7 @@
 <% end %>
 
 <% if flash[:notice] %>
-  <p class="alert alert-warning"><%= flash[:notice] %></p>
+  <p class="alert alert-success"><%= flash[:notice] %></p>
 <% end %>  
 
     <%= yield %>
