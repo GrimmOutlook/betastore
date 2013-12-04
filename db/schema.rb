@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121214614) do
+ActiveRecord::Schema.define(version: 20131203233327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,12 +23,14 @@ ActiveRecord::Schema.define(version: 20131121214614) do
   end
 
   create_table "credit_cards", force: true do |t|
-    t.string   "cardholder_name"
-    t.string   "card_number"
-    t.integer  "exp_month",       limit: 2
+    t.integer  "exp_month",    limit: 2
     t.integer  "exp_year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
+    t.string   "stripe_token"
+    t.string   "card_type"
+    t.string   "last_4"
   end
 
   create_table "customers", force: true do |t|
@@ -37,6 +39,7 @@ ActiveRecord::Schema.define(version: 20131121214614) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.string   "stripe_token"
   end
 
   create_table "line_items", force: true do |t|
@@ -88,7 +91,7 @@ ActiveRecord::Schema.define(version: 20131121214614) do
     t.decimal  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "inventory"
+    t.integer  "inventory",  default: 0
   end
 
   create_table "subscriptions", force: true do |t|
