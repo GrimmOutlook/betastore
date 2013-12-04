@@ -1,7 +1,10 @@
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+<<<<<<< HEAD
 require 'mocha/setup'
+=======
+>>>>>>> 58cc2b87b0d5c08c77ba8b3098b17669f6c5def3
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
@@ -14,6 +17,7 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+<<<<<<< HEAD
 
 class ActionController::TestCase
   def log_in(attrs={})
@@ -22,3 +26,5 @@ class ActionController::TestCase
     customer
   end
 end
+=======
+>>>>>>> 58cc2b87b0d5c08c77ba8b3098b17669f6c5def3

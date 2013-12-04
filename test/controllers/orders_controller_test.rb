@@ -3,6 +3,7 @@ require 'test_helper'
 class OrdersControllerTest < ActionController::TestCase
  
   test "display checkout form" do
+<<<<<<< HEAD
     log_in
     get :new
     assert_response :success
@@ -44,5 +45,17 @@ class OrdersControllerTest < ActionController::TestCase
     assert_redirected_to root_path
     assert_equal "Your order has been placed", flash[:notice]
     assert_equal 'customer_abc123', current_customer.reload.stripe_token
+=======
+    get :new
+    assert_response :success
+    assert_select 'form'
+    assert_select 'input[type=submit]'
+  end
+
+   test "redirects to home page with notice" do
+    post :create, order: { credit_card_attributes: {}, line_item_attributes: [] }
+    assert_redirected_to root_path
+    assert_equal "Your order has been placed", flash[:notice]
+>>>>>>> 58cc2b87b0d5c08c77ba8b3098b17669f6c5def3
   end
 end

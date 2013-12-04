@@ -4,6 +4,7 @@
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
+<<<<<<< HEAD
         // Hard-coded example data:
        // var data = google.visualization.arrayToDataTable([
        //   ['Day', 'Orders', 'Revenue'],
@@ -18,6 +19,15 @@
         var data = google.visualization.arrayToDataTable(<%= raw(
           ([['Day', 'Orders', 'Revenue']] + @days).to_json
         )%>);
+=======
+        var data = google.visualization.arrayToDataTable([
+          ['Day', 'Orders', 'Revenue'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+>>>>>>> 58cc2b87b0d5c08c77ba8b3098b17669f6c5def3
 
         var options = {
           title: 'Revenue By Day'
