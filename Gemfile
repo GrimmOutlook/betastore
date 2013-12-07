@@ -48,14 +48,15 @@ group :development, :test do
   gem 'pry'
 end
 
-<<<<<<< HEAD
 group :test do
   gem 'mocha', require: false
 end
 
-=======
->>>>>>> 58cc2b87b0d5c08c77ba8b3098b17669f6c5def3
 # Use ActiveModel has_secure_password
+
+#Run these commands to fix bcrypt:
+#gem uninstall bcrypt-ruby
+#gem install bcrypt-ruby --version='3.0.1' --platform=ruby --no-ri--no-rdoc
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'kaminari'
