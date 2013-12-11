@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :line_items
   accepts_nested_attributes_for :credit_card
 
+  before_save :set_placed_at
   before_save :set_total_amount
 
   def self.recent
@@ -27,4 +28,7 @@ class Order < ActiveRecord::Base
   def set_total_amount
     self.total_amount = total_price
   end
+
+
+  
 end

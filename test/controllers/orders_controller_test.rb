@@ -3,7 +3,6 @@ require 'test_helper'
 class OrdersControllerTest < ActionController::TestCase
  
   test "display checkout form" do
-<<<<<<< HEAD
     log_in
     get :new
     assert_response :success

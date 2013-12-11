@@ -1,12 +1,10 @@
 Betastore::Application.routes.draw do
   
-  get "dashboard/index"
   namespace :admin do
     resources :products
-    root :to => 'products#index'
+    root :to => 'dashboard#index'
   end
 
-#Copied the only stuff from Paul's Github 10-30.  Figure out why!
   resources :products, only: [:index, :show]
   resources :subscriptions, only: [:new, :create, :show]
   
@@ -23,7 +21,6 @@ Betastore::Application.routes.draw do
   post '/checkout' => 'orders#create'
 
   get '/cart' => 'cart_items#index', as: 'cart_items'
-
   post '/products/:product_id/cart_items' => 'cart_items#create', as: 'add_to_cart'
  
   get '/forgot_password' => 'password_resets#new', as: 'forgot_password'
@@ -39,6 +36,8 @@ Betastore::Application.routes.draw do
   post '/log_in'  => 'log_ins#create'
   post '/log_out' => 'log_ins#destroy', as: 'log_out'
 
+  #Figure out what this is:
+  get '/:action', :controller => 'pages'
 
   root :to =>'products#index'
 end

@@ -23,6 +23,9 @@ class ProductsController < ApplicationController
       scope = scope.where('inventory >= 0', params[:stock])
     end
 
+    if params[:search].present?
+      scope = scope.where()
+    end
    @products = scope.page(params[:page]).per(10)
    session[:view_count] ||=0
    session[:view_count] += 1
