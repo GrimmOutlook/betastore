@@ -2,6 +2,7 @@ Betastore::Application.routes.draw do
   
   namespace :admin do
     resources :products
+    resources :orders
     root :to => 'dashboard#index'
   end
 

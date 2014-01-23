@@ -2,9 +2,14 @@
 
 
 <%= link_to  cart_items_path, class: 'cart' do %>
-  "Current Items in Your Cart: (<span id="cart_item_count"><%= cart_item_count %></span>)",
+  Current Items in Your Cart: (<span id="cart_item_count"><%= cart_item_count %></span>)
  <% end %>
 
+<% if logged_in? %>
+  <%= link_to "Log Out", log_out_path, method: 'post' %>
+<% else %>
+  <%= link_to "Log In", log_in_path %>
+<% end %>
 
 <ul>
 
@@ -12,8 +17,8 @@
 
 <h3>Search</h3>
 <%= form_tag({}, method: 'get') do %>
-  <%= text_field_tag :search %>
-  <button type
+  <%= text_field_tag :search, params[:search] %>
+  <button type="submit">Search</button>
 <% end %>
 
 <h3>Categories</h3>
@@ -30,19 +35,21 @@
   <% end %>
 </ul>
 
-<h3>Inventory</h3>
-<ul>
+<section class="products">
   <% @products.each do |product| %>
-    <li><%= link_to "#{product.inventory} are left", stock: product.inventory %></li>
+    <article>
+      <%= image_tag product.image_url %>
+      <h2><%= link_to product_title(product).html_safe, product_path(product) %></h2>
+      <p>
+        <%= number_to_currency product.price %>,
+        Added <%= time_ago_in_words product.created_at %> ago
+      </p>
+      <p>
+        <%= button_to "Add To Cart", add_to_cart_path(product), class: 'btn btn-primary add_to_cart' %>
+      </p>
+    </article>
   <% end %>
-</ul>
-
-<% for product in @products %>
-<li><img src = "http://pjb3.github.io/betastore/products/<%= product.name.downcase.tr(" ", "_") %>.jpg"><a href="HatOrderPage.html"><%= product.name %></a></li>
-
-<%= button_to "Add to Cart", add_to_cart_path(product), class: 'btn btn-primary add_to_cart'  %>
-
-<% end %>
+</section>
 
 </ul>
 

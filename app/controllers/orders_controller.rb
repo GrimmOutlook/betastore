@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-     @order.build_credit_card
+    @order.build_credit_card
     Hash(session[:cart]).each do |pid, qty|
       @order.line_items.build(
         product_id: pid,
@@ -13,8 +13,8 @@ class OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
+    @order.customer = current_customer
     @order.credit_card.customer = current_customer
-
     if @order.save
 
     # Create a Customer
@@ -22,12 +22,11 @@ class OrdersController < ApplicationController
           :card => params[:stripe_customer_token],
           :description => current_customer.email)
 
-<<<<<<< HEAD
         current_customer.stripe_token = customer.id
         current_customer.save!
-=======
-        current_customer.update_attributes!(stripe_token: customer.id)
->>>>>>> 58cc2b87b0d5c08c77ba8b3098b17669f6c5def3
+
+      #  current_customer.update_attributes!(stripe_token: customer.id)
+      # 58cc2b87b0d5c08c77ba8b3098b17669f6c5def3
 
         Stripe::Charge.create(
           :amount => @order.total_amount_in_cents,

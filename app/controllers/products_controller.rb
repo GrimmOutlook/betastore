@@ -14,18 +14,22 @@ class ProductsController < ApplicationController
       scope = scope.where('price >= ?', params[:min_price])
     end
 
-    if params[:category_id].present?
-      scope = scope.includes(:product_categorizations)
-                .where('product_categorizations.category_id' => params[:category_id])
+    if params[:max_price].present?
+      scope = scope.where('price <= ?', params[:min_price])
     end
 
-    if params[:stock].present?
-      scope = scope.where('inventory >= 0', params[:stock])
+    if params[:category_id].present?
+      scope = scope.in_category(params[:category_id])
     end
+
+   # if params[:stock].present?
+   #   scope = scope.where('inventory >= 0', params[:stock])
+   # end
 
     if params[:search].present?
-      scope = scope.where()
+      scope = scope.search(params[:search])
     end
+   
    @products = scope.page(params[:page]).per(10)
    session[:view_count] ||=0
    session[:view_count] += 1
@@ -48,16 +52,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  # GET /products/new
-  def new
-    @product = Product.new
-  end
-
-  # GET /products/1/edit
-  def edit
-  end
-
-def create
+  def create
   @product = Product.new(product_params)
 
   respond_to do |format|

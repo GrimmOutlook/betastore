@@ -17,11 +17,10 @@
 #LineItem.create(order: order, quantity: 1, product: muffin)
 #LineItem.create(order: order, quantity: 1, product: coffee)
 
-categories = Category.all
-
 clothing = Category.create!(name: 'Clothing')
 stuff = Category.create!(name: 'Stuff')
 
+categories = Category.all
 
   clothing.products << Product.create!( name: 'Hat', price: 14.99, inventory: 10 )
   clothing.products << Product.create!( name: 'Hoodie', price: 22.99, inventory: 8 )
@@ -36,5 +35,3 @@ stuff = Category.create!(name: 'Stuff')
   #   name: Faker::Lorem.words(2).join(' ').titleize,
    #  price: (rand(20) + rand(99)/100.0))
 # end
-
-
